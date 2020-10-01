@@ -41,37 +41,37 @@ const AvailableAppoinments = () => {
                     <h3>Teeth orthodontics</h3>
                     <h4>08.00 AM - 9.00 AM</h4>
                     <p>10 spaces available</p>
-                    <button onClick={()=>handleOpen()}>Book Appoinment</button>
+                    <button onClick={()=>handleOpen()}>Appoinment Book</button>
                 </Grid>
                 <Grid className="appoinments-item" item xs={12} md={4}>
                     <h3>Cosmetic Dentistry</h3>
                     <h4>10.00 AM - 11.30 AM</h4>
                     <p>10 spaces available</p>
-                    <button onClick={()=>handleOpen()}>Book Appoinment</button>
+                    <button onClick={()=>handleOpen()}>Appoinment Book</button>
                 </Grid>
                 <Grid className="appoinments-item" item xs={12} md={4}>
                     <h3>Teeth Cleaning</h3>
                     <h4>05.00 PM - 6.30 PM</h4>
                     <p>10 spaces available</p>
-                    <button onClick={()=>handleOpen()}>Book Appoinment</button>
+                    <button onClick={()=>handleOpen()}>Appoinment Book</button>
                 </Grid>
                 <Grid className="appoinments-item" item xs={12} md={4}>
                     <h3>Teeth orthodontics</h3>
                     <h4>08.00 AM - 9.00 AM</h4>
                     <p>10 spaces available</p>
-                    <button onClick={()=>handleOpen()}>Book Appoinment</button>
+                    <button onClick={()=>handleOpen()}>Appoinment Book</button>
                 </Grid>
                 <Grid className="appoinments-item" item xs={12} md={4}>
                     <h3>Teeth orthodontics</h3>
                     <h4>08.00 AM - 9.00 AM</h4>
                     <p>10 spaces available</p>
-                    <button onClick={()=>handleOpen()}>Book Appoinment</button>
+                    <button onClick={()=>handleOpen()}>Appoinment Book</button>
                 </Grid>
                 <Grid className="appoinments-item" item xs={12} md={4}>
                     <h3>Teeth orthodontics</h3>
                     <h4>08.00 AM - 9.00 AM</h4>
                     <p>10 spaces available</p>
-                    <button onClick={()=>handleOpen()}>Book Appoinment</button>
+                    <button onClick={()=>handleOpen()}>Appoinment Book</button>
                 </Grid>
             </Grid>
 
@@ -92,7 +92,7 @@ const AvailableAppoinments = () => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 style={{textAlign:'center', color:'#5ab7d6'}} id="transition-modal-title">Book Appoinment</h2>
+            <h2 style={{textAlign:'center', color:'#5ab7d6'}} id="transition-modal-title">Appoinment Book</h2>
             <form action="" className='form-control'>
                 {/* <input type='text' name='time' placeholder='Select time'/><br/> */}
                 <select id="cars" style={{width:'393px'}}>

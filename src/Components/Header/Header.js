@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -8,12 +8,16 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import EventAvailableIcon from '@material-ui/icons/EventAvailable';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import SettingsIcon from '@material-ui/icons/Settings';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 import MenuIcon from '@material-ui/icons/Menu';
 import { AppBar, Grid, IconButton, Toolbar, Typography } from '@material-ui/core';
 import './Header.css'
 import { Link } from 'react-router-dom';
+import {UserContext} from '../../App'
 
 const useStyles = makeStyles({
   list: {
@@ -25,6 +29,8 @@ const useStyles = makeStyles({
 });
 
 export default function Header() {
+  const [user,setUser]=useContext(UserContext)
+
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -51,27 +57,20 @@ export default function Header() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+        {['Dashboard', 'Appoinment', 'Patients', 'Prescriptions', 'Setting'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
-                {index==0 && <InboxIcon />}
-                {index==1 && <MailIcon />}
-                {index==2 && <InboxIcon />}
-                {index==3 && <MailIcon />}
+                {index==0 && <DashboardIcon />}
+                {index==1 && <EventAvailableIcon />}
+                {index==2 && <SupervisorAccountIcon />}
+                {index==3 && <AssignmentIcon />}
+                {index==4 && <SettingsIcon />}
             </ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
       </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+      
     </div>
   );
 
@@ -100,9 +99,8 @@ export default function Header() {
             <Link className='link' to='/'><b color="inherit">Home</b></Link>
             <b color="inherit">About</b>
             <Link className='link' to='/dental-services'><b color="inherit">Dental Services</b></Link>
-            <b color="inherit">Reviews</b>
-            <b color="inherit">Blog</b>
             <b color="inherit">Contact</b>
+            <Link  to='/auth'><button className="button">SignIn</button></Link>
         </Grid>
         </Grid>
         </Toolbar>

@@ -15,3 +15,19 @@ code {
   text-decoration:none;
   color:black;
 }
+
+.button{
+  background-color:#5ab7d6;
+  color:white;
+  font-size:17px;
+  font-weight:700;
+  padding:8px 20px;
+  border-radius:5px;
+  border:none;
+  outline:none;
+  cursor:pointer;
+
+}
+.button:active{
+  background:#4cc2e9;
+}
