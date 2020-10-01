@@ -13,6 +13,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import { AppBar, Grid, IconButton, Toolbar, Typography } from '@material-ui/core';
 import './Header.css'
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   list: {
@@ -76,7 +77,7 @@ export default function Header() {
 
   return (
     <div>
-    <AppBar position="static">
+    <div position="static" color='transparent' >
         <Toolbar>
         <Grid style={{display:'flex', justifyContent:'space-between', width:'100%', alignItems:'center'}}>
         <Grid style={{ display:'flex', alignItems:'center'}}>
@@ -96,16 +97,16 @@ export default function Header() {
             </Typography>
         </Grid>
         <Grid className='header-menu'>
-            <b color="inherit">Home</b>
+            <Link className='link' to='/'><b color="inherit">Home</b></Link>
             <b color="inherit">About</b>
-            <b color="inherit">Dental Services</b>
+            <Link className='link' to='/dental-services'><b color="inherit">Dental Services</b></Link>
             <b color="inherit">Reviews</b>
             <b color="inherit">Blog</b>
             <b color="inherit">Contact</b>
         </Grid>
         </Grid>
         </Toolbar>
-    </AppBar>
+    </div>
     </div>
 
     
