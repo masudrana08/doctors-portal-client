@@ -1,10 +1,12 @@
 import { button, Grid } from '@material-ui/core';
-import React from 'react';
+import React, { useContext } from 'react';
 import './AvailableAppoinments.css'
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import { UserContext } from '../../../App';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -22,11 +24,14 @@ const useStyles = makeStyles((theme) => ({
 
 const AvailableAppoinments = () => {
     const date=new Date().toDateString()
-    
+    const [user,setUser]=useContext(UserContext)
+    const history=useHistory()
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
+
     const handleOpen = () => {
-      setOpen(true);
+      user.isSignedIn ? setOpen(true)
+      : history.push('/auth')
     };
   
     const handleClose = () => {

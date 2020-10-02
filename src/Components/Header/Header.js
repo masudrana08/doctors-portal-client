@@ -11,7 +11,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
-import SettingsIcon from '@material-ui/icons/Settings';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import MenuIcon from '@material-ui/icons/Menu';
 import { AppBar, Grid, IconButton, Toolbar, Typography } from '@material-ui/core';
@@ -57,18 +56,42 @@ export default function Header() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Dashboard', 'Appoinment', 'Patients', 'Prescriptions', 'Setting'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-                {index==0 && <DashboardIcon />}
-                {index==1 && <EventAvailableIcon />}
-                {index==2 && <SupervisorAccountIcon />}
-                {index==3 && <AssignmentIcon />}
-                {index==4 && <SettingsIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+          <Link className='link' to='/dashboard'>
+            <ListItem button key='Dashboard'>
+              <ListItemIcon>
+                <DashboardIcon/>
+              </ListItemIcon>
+              <ListItemText primary='Dashboard' />
+            </ListItem>
+          </Link>
+
+          <Link className='link' to='/appoinment'>
+            <ListItem button key='Appoinment'>
+              <ListItemIcon>
+                <EventAvailableIcon/>
+              </ListItemIcon>
+              <ListItemText primary='Appoinment' />
+            </ListItem>
+          </Link>
+
+          <Link className='link' to='/patients'>
+            <ListItem button key='Patients'>
+              <ListItemIcon>
+                <SupervisorAccountIcon/>
+              </ListItemIcon>
+              <ListItemText primary='Patients' />
+            </ListItem>
+          </Link>
+
+          <Link className='link' to='/prescription'>
+            <ListItem button key='Prescription'>
+              <ListItemIcon>
+                <AssignmentIcon/>
+              </ListItemIcon>
+              <ListItemText primary='Prescription' />
+            </ListItem>
+          </Link>
+        
       </List>
       
     </div>
@@ -100,7 +123,10 @@ export default function Header() {
             <b color="inherit">About</b>
             <Link className='link' to='/dental-services'><b color="inherit">Dental Services</b></Link>
             <b color="inherit">Contact</b>
-            <Link  to='/auth'><button className="button">SignIn</button></Link>
+            {
+              user.isSignedIn ? <b color="inherit">Hello, {user.name || 'user'}</b>
+              : <Link  to='/auth'><button className="button">SignIn</button></Link>
+            }
         </Grid>
         </Grid>
         </Toolbar>
