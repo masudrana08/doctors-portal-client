@@ -5,9 +5,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import { UserContext } from '../../../App';
+import { myHost, UserContext } from '../../../App';
 import { useHistory } from 'react-router-dom';
-
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 const useStyles = makeStyles((theme) => ({
     modal: {
       display: 'flex',
@@ -15,11 +15,11 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: 'center',
     },
     paper: {
-      backgroundColor: theme.palette.background.paper,
-      
+      backgroundColor: theme.palette.background.paper ,
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
-    },
+    }
+    
   }));
 
 const AvailableAppoinments = () => {
@@ -28,12 +28,18 @@ const AvailableAppoinments = () => {
     const history=useHistory()
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
+    const [successAlert, setSuccessAlert] = React.useState(false);
 
     const handleOpen = () => {
-      user.isSignedIn ? setOpen(true)
+      // user.isSignedIn 
+      true? setOpen(true)
       : history.push('/auth')
     };
   
+   const successAlertHandler=()=>{
+    setSuccessAlert(true)
+    setOpen(false)
+   }
     const handleClose = () => {
       setOpen(false);
     };
@@ -98,19 +104,40 @@ const AvailableAppoinments = () => {
         <Fade in={open}>
           <div className={classes.paper}>
             <h2 style={{textAlign:'center', color:'#5ab7d6'}} id="transition-modal-title">Appoinment Book</h2>
-            <form action="" className='form-control'>
+            <form action={myHost+'/appoinment-booking'} method='post' className='form-control'>
                 {/* <input type='text' name='time' placeholder='Select time'/><br/> */}
-                <select id="cars" style={{width:'393px'}}>
-                    <option value="volvo">8:00 AM</option>
-                    <option value="saab">10:00 AM</option>
-                    <option value="vw">5:00 PM</option>
+                <select name="time" id="cars" style={{width:'393px'}}>
+                    <option value="8:00">8:00 AM</option>
+                    <option value="10:00">10:00 AM</option>
+                    <option value="17:00">5:00 PM</option>
                 </select><br/>
                 <input type='text' name='name' placeholder='Name'/><br/>
                 <input type='text' name='phone' placeholder='Phone Number'/><br/>
                 <input type='text' name='email' placeholder='Email'/><br/>
                 <input type='text' name='date' placeholder='dd/mm/year'/><br/>
-                <button>Send</button>
+                <button onClick={successAlertHandler} type='submit' >Send</button>
             </form>
+          </div>
+        </Fade>
+      </Modal>
+
+
+      <Modal 
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={successAlert}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={successAlert}>
+          <div className={classes.paper} style={{textAlign:'center', padding:'50px'}}>
+              <CheckCircleIcon style={{color:'green',fontSize:'100px'}}/>
+              <h3 style={{color:'grey'}}>Appoinment request Sent</h3>
           </div>
         </Fade>
       </Modal>
