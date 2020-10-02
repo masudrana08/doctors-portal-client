@@ -8,6 +8,7 @@ import Fade from '@material-ui/core/Fade';
 import { myHost, UserContext } from '../../../App';
 import { useHistory } from 'react-router-dom';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+
 const useStyles = makeStyles((theme) => ({
     modal: {
       display: 'flex',
@@ -32,7 +33,7 @@ const AvailableAppoinments = () => {
 
     const handleOpen = () => {
       // user.isSignedIn 
-      true? setOpen(true)
+      user.isSignedIn? setOpen(true)
       : history.push('/auth')
     };
   
@@ -113,7 +114,7 @@ const AvailableAppoinments = () => {
                 </select><br/>
                 <input type='text' name='name' placeholder='Name'/><br/>
                 <input type='text' name='phone' placeholder='Phone Number'/><br/>
-                <input type='text' name='email' placeholder='Email'/><br/>
+                <input type='text' name='email' value={user.email}/><br/>
                 <input type='text' name='date' placeholder='dd/mm/year'/><br/>
                 <button onClick={successAlertHandler} type='submit' >Send</button>
             </form>
@@ -122,7 +123,7 @@ const AvailableAppoinments = () => {
       </Modal>
 
 
-      <Modal 
+      <Modal onClick={()=>setSuccessAlert(false)}
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         className={classes.modal}
@@ -131,7 +132,7 @@ const AvailableAppoinments = () => {
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
-          timeout: 500,
+          timeout: 5,
         }}
       >
         <Fade in={successAlert}>

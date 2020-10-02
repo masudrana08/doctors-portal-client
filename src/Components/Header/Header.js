@@ -91,6 +91,18 @@ export default function Header() {
               <ListItemText primary='Prescription' />
             </ListItem>
           </Link>
+
+          {
+            user.role=="admin" && 
+            <Link className='link' to='/setting'>
+            <ListItem button key='setting'>
+              <ListItemIcon>
+                <AssignmentIcon/>
+              </ListItemIcon>
+              <ListItemText primary='Setting' />
+            </ListItem>
+          </Link>
+          }
         
       </List>
       

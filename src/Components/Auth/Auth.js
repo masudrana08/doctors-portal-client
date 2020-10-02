@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { FormControl, FormGroup,  Input, InputLabel } from '@material-ui/core';
-import { UserContext } from '../../App';
+import { myHost, UserContext } from '../../App';
 import firebase from 'firebase'
 import { firebaseConfig } from '../../firebaseConfig';
 import { useHistory } from 'react-router-dom';
@@ -26,18 +26,35 @@ export default function Auth() {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider)
     .then(result=>{
-      console.log(history)
-      setUser({...user, email:result.user.email, name:result.user.displayName, isSignedIn:true})
+      fetch(myHost+'/userRole',{
+        method:'GET',
+        headers:{
+          'Content-Type':'application/json',
+          email:result.user.email
+        }
+      })
+      .then(res=>res.json())
+      .then(data=>{
+        setUser({...user, email:result.user.email, name:result.user.displayName, uid:result.user.uid, isSignedIn:true, role:data.role})
+      })
+
       history.location.state ? history.replace(history.location.state.pathname)
       : history.goBack()
+
     })
     .catch(error=>console.log(error))
   }
-
   const emailPassSignupHandler=()=>{
     firebase.auth().createUserWithEmailAndPassword(`${user.inputEmail}`, `${user.inputPassword}`)
     .then(result => {
       setUser({...user, isSignedUp:true})
+
+      fetch(myHost+'/addUser',{
+        method:'POST',
+        body:JSON.stringify({email:user.inputEmail,role:'user'}),
+        headers:{'Content-Type':'application/json'}
+      })
+      .then(res=>res.json())
     })
     .catch(error=>console.log(error))
   }
@@ -45,7 +62,23 @@ export default function Auth() {
   const emailPassSigninHandler = ()=>{
     firebase.auth().signInWithEmailAndPassword(`${user.inputEmail}`, `${user.inputPassword}`)
     .then(result=>{
-      setUser({...user, isSignedIn:true, email:result.user.email})
+      
+
+      fetch(myHost+'/userRole',{
+        method:'GET',
+        headers:{
+          'Content-Type':'application/json',
+          email:user.inputEmail
+        }
+      })
+      .then(res=>res.json())
+      .then(data=>{
+        setUser({...user, isSignedIn:true, email:result.user.email, role:data.role})
+      })
+
+      history.location.state ? history.replace(history.location.state.pathname)
+      : history.goBack()
+
     })
     .catch(error=>console.log(error))
   }
@@ -65,12 +98,13 @@ export default function Auth() {
             <Input onBlur={(event)=>setUser({...user, inputPassword:event.target.value})} id="my-input" aria-describedby="my-helper-text" />
         </FormControl>
         {
-          user.isSignedIn? <button onClick={emailPassSigninHandler} className='button'>Sign in</button>
+          user.isSignedUp? <button onClick={emailPassSigninHandler} className='button'>Sign in</button>
           : <button onClick={emailPassSignupHandler} className='button'>Sign up</button>
         }
         <button onClick={googleSigninHandler}>Google</button>
 
     </FormGroup>
+    <button onClick={()=>setUser({...user, isSignedUp:true})}>toggle</button>
    </>
   );
 }
