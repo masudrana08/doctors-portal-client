@@ -1,11 +1,21 @@
 import React from 'react';
-import Header from '../Header/Header';
+import AboutAppoinment from './AboutAppoinment/AboutAppoinment';
+import Blogs from './Blogs/Blogs';
+import DentalPatient from './DentalPatient/DentalPatient';
+import Header from './Header/Header';
+import Reviews from './Reviews/Reviews';
+import Services from './Services/Services';
+
 
 const Home = () => {
     return (
         <div>
             <Header></Header>
-            <h1>This is home</h1>
+            <Services></Services>
+            <DentalPatient></DentalPatient>
+            <AboutAppoinment></AboutAppoinment>
+            <Reviews></Reviews>
+            <Blogs></Blogs>
         </div>
     );
 };

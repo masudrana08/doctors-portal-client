@@ -1,10 +1,10 @@
 import React from 'react';
 import Calender from '../Calender/Calender';
-import Header from '../Header/Header';
 import { Grid } from '@material-ui/core';
 import transparentDentalChair from '../../images/transparent-dental-chair.png'
 import dentalChair from '../../images/dental-chair.png'
 import AvailableAppoinments from './AvailableApoinments/AvailableAppoinments';
+import Navbar from '../Home/Header/Navbar/Navbar';
 
 
 const DentalServices = () => {
@@ -15,7 +15,7 @@ const DentalServices = () => {
       height:"100vh", backgroundSize:"cover",
       padding:"0 30px"
       }}>
-      <Header></Header>
+      <Navbar></Navbar>
 
       <Grid item container justifyContent='space-between' md={12}>
         <Grid item md={6} style={{padding:'10px'}}>

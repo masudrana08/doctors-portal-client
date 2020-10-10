@@ -17,7 +17,8 @@ code {
 }
 
 .button{
-  background-color:#5ab7d6;
+  /* background-color:#5ab7d6; */
+  background:linear-gradient(to right,rgb(60, 221, 159),rgb(22, 205, 211));
   color:white;
   font-size:17px;
   font-weight:700;
@@ -30,4 +31,23 @@ code {
 }
 .button:active{
   background:#4cc2e9;
+}
+.color{
+  color:#312e49;
+  color:#696969;
+}
+
+p{
+  font-family:arial;
+  color:#757375
+}
+small{
+  color:#757375;
+}
+.brand-text{
+  color:#1CC7C1;
+}
+.secondary-text{
+  color:#757375;
+
 }
