@@ -28,24 +28,11 @@ export default function Auth() {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider)
     .then(result=>{
-      fetch('http://localhost:3001/userRole',{
-        method:'GET',
-        headers:{
-          'Content-Type':'application/json',
-          email:result.user.email
-        }
+      
+        setUser({...user, email:result.user.email, name:result.user.displayName, uid:result.user.uid, isSignedIn:true})
+        history.location.state ? history.replace(history.location.state.pathname)
+        : history.goBack()
       })
-      .then(res=>res.json())
-      .then(data=>{
-        
-        setUser({...user, email:result.user.email, name:result.user.displayName, uid:result.user.uid, isSignedIn:true, role:data.role})
-      })
-
-      history.location.state ? history.replace(history.location.state.pathname)
-      : history.goBack()
-
-    })
-    .catch(error=>console.log(error))
   }
   const emailPassSignupHandler=()=>{
     firebase.auth().createUserWithEmailAndPassword(`${user.inputEmail}`, `${user.inputPassword}`)
@@ -66,23 +53,12 @@ export default function Auth() {
     firebase.auth().signInWithEmailAndPassword(`${user.inputEmail}`, `${user.inputPassword}`)
     .then(result=>{
 
-      fetch('http://localhost:3001/userRole',{
-        method:'GET',
-        headers:{
-          'Content-Type':'application/json',
-          email:user.inputEmail
-        }
-      })
-      .then(res=>res.json())
-      .then(data=>{
-        setUser({...user, isSignedIn:true, email:result.user.email, role:data.role})
-      })
+        setUser({...user, isSignedIn:true, email:result.user.email})
 
       history.location.state ? history.replace(history.location.state.pathname)
       : history.goBack()
-
     })
-    .catch(error=>console.log(error))
+
   }
   console.log(user)
   return (

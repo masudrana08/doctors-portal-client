@@ -5,6 +5,7 @@ import transparentDentalChair from '../../images/transparent-dental-chair.png'
 import dentalChair from '../../images/dental-chair.png'
 import AvailableAppoinments from './AvailableApoinments/AvailableAppoinments';
 import Navbar from '../Shared/Navbar/Navbar';
+import Footer from '../Shared/Footer/Footer';
 
 
 
@@ -17,8 +18,8 @@ const DentalServices = () => {
       padding:"0 30px"
       }}>
       <Navbar myColor='grey'></Navbar>
-
-      <Grid item container justifyContent='space-between' md={12} >
+      <h2 className='brand-text' style={{marginLeft:'30px'}}>Appoinment</h2>
+      <Grid item container justifyContent='space-between' alignItems='center' md={12} >
         <Grid item md={6} style={{padding:'10px'}}>
           <Calender></Calender>
         </Grid>
@@ -29,6 +30,7 @@ const DentalServices = () => {
       
     </div>
     <AvailableAppoinments></AvailableAppoinments>
+    <Footer></Footer>
     </>
   );
 };

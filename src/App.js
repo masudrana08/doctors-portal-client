@@ -2,7 +2,12 @@ import React, { createContext, useState } from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import './App.css';
 import Auth from './Components/Auth/Auth';
+import Appoinment from './Components/Dashboard/Appoinment/Appoinment';
 import Dashboard from './Components/Dashboard/Dashboard';
+import Patients from './Components/Dashboard/Patients/Patients';
+import Prescription from './Components/Dashboard/Prescription/Prescription';
+import Setting from './Components/Dashboard/Setting/Setting';
+
 import DentalServices from './Components/DentalServices/DentalServices';
 import Home from './Components/Home/Home';
 import NotFound from './Components/NotFound/NotFound';
@@ -28,9 +33,30 @@ function App() {
               <Auth></Auth>
             </Route>
 
-            <PrivateRoute exact path='/dashboard'>
+            <Route exact path='/dashboard'>
               <Dashboard></Dashboard>
-            </PrivateRoute>
+            </Route>
+
+            <Route exact path='/dashboard/dashboard'>
+              <Dashboard></Dashboard>
+            </Route>
+
+            <Route exact path='/dashboard/patients'>
+              <Patients></Patients>
+            </Route>
+
+            <Route exact path='/dashboard/prescription'>
+              <Prescription></Prescription>
+            </Route>
+
+            <Route exact path='/dashboard/appoinment'>
+              <Appoinment></Appoinment>
+            </Route>
+
+            <Route exact path='/dashboard/setting'>
+              <Setting></Setting>
+            </Route>
+
 
             <Route path='*'>
               <NotFound></NotFound>

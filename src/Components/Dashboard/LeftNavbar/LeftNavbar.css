@@ -1,0 +1,8 @@
+.left-navbar{
+    height:100vh;
+    background:linear-gradient(to bottom,rgb(60, 221, 159),rgb(22, 205, 211));
+    position:fixed;
+    top:0;
+    
+    padding:70px 60px 0 20px;
+}

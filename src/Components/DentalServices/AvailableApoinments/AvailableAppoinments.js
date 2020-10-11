@@ -90,22 +90,23 @@ const AvailableAppoinments = () => {
       })
       .then(res=>res.json())
       .then(result=>{
-        console.log(result)
         if(result){
           successAlertHandler()
         }
       })
     }
-    console.log(appoinment);
+    console.log(user.calenderDate?.toDateString())
     return (
-        <div style={{width:"90%", margin:"auto"}}>
-            <h2 style={{color:'#5ab7d6', textAlign:"center",margin:'70px'}}>Available Appoinments on {date}</h2>
+        <div style={{width:"90%", margin:"auto",marginBottom:'100px'}}>
+            <h2 style={{color:'#5ab7d6', textAlign:"center",margin:'70px'}}>
+              Available Appoinments on {user.calenderDate?.toDateString() || date}
+            </h2>
             <Grid className="appoinments-container" container item xs={12} spacing='6'  >
                {
                  appoinmentsData.map(data=>{
                    return(
                     <Grid className="appoinments-item" item md={4}>
-                      <div style={{border:'1px solid lightgray', borderRadius:'10px',boxShadow:'0px 2px 5px lightgray', padding:'30px'}}>
+                      <div style={{ borderRadius:'10px',boxShadow:'0px 2px 5px lightgray', padding:'30px'}}>
                       <h3>{data.title}</h3>
                       <h4>{data.time}</h4>
                       <p>{data.space}</p>
@@ -168,7 +169,7 @@ const AvailableAppoinments = () => {
       >
         <Fade in={successAlert}>
           <div className={classes.paper} style={{textAlign:'center', padding:'50px'}}>
-              <CheckCircleIcon style={{color:'green',fontSize:'100px'}}/>
+              <CheckCircleIcon style={{color:'rgb(52, 189, 93)',fontSize:'100px'}}/>
               <h3 style={{color:'grey'}}>Appoinment request Sent</h3>
           </div>
         </Fade>

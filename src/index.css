@@ -78,3 +78,6 @@ small{
 .my-textarea:focus{
   outline:1px solid #4cc2e9;
 }
+.f{
+  color:rgb(52, 189, 93);
+}
