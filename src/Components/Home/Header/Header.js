@@ -1,8 +1,8 @@
 import React from 'react';
 import MainHeader from './MainHeader/MainHeader';
-import Navbar from './Navbar/Navbar';
 import './Header.css'
 import BusinessInfo from './BusinessInfo/BusinessInfo';
+import Navbar from '../../Shared/Navbar/Navbar';
 const Header = () => {
     return (
         <div className='header-container'>

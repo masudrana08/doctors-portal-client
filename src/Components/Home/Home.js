@@ -1,7 +1,10 @@
 import React from 'react';
+import Footer from '../Shared/Footer/Footer';
 import AboutAppoinment from './AboutAppoinment/AboutAppoinment';
 import Blogs from './Blogs/Blogs';
+import ConnectUs from './ConnectUs/ConnectUs';
 import DentalPatient from './DentalPatient/DentalPatient';
+import Doctors from './Doctors/Doctors';
 import Header from './Header/Header';
 import Reviews from './Reviews/Reviews';
 import Services from './Services/Services';
@@ -16,6 +19,9 @@ const Home = () => {
             <AboutAppoinment></AboutAppoinment>
             <Reviews></Reviews>
             <Blogs></Blogs>
+            <Doctors></Doctors>
+            <ConnectUs></ConnectUs>
+            <Footer></Footer>
         </div>
     );
 };

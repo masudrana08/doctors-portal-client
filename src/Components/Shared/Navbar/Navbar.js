@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid} from '@material-ui/core';
 import './Navbar.css'
 import { Link } from 'react-router-dom';
-import {UserContext} from '../../../../App'
+import { UserContext } from '../../../App';
 
 const useStyles = makeStyles({
   list: {

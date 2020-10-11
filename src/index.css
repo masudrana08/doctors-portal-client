@@ -45,9 +45,36 @@ small{
   color:#757375;
 }
 .brand-text{
-  color:#1CC7C1;
+  color:rgb(28, 199, 193);
 }
 .secondary-text{
   color:#757375;
 
+}
+
+.my-input{
+  border:none;
+  outline:none;
+  width:450px;
+  border:1px solid lightgray;
+  height:30px;
+  padding:0 20px;
+  margin-bottom:10px;
+  
+}
+.my-input:focus{
+  outline:1px solid #4cc2e9;
+}
+
+.my-textarea{
+  border:none;
+  outline:none;
+  width:450px;
+  border:1px solid lightgray;
+  height:100px;
+  padding:10px 20px 10px;
+  margin-bottom:10px;
+}
+.my-textarea:focus{
+  outline:1px solid #4cc2e9;
 }

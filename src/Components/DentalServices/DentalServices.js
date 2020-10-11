@@ -4,7 +4,8 @@ import { Grid } from '@material-ui/core';
 import transparentDentalChair from '../../images/transparent-dental-chair.png'
 import dentalChair from '../../images/dental-chair.png'
 import AvailableAppoinments from './AvailableApoinments/AvailableAppoinments';
-import Navbar from '../Home/Header/Navbar/Navbar';
+import Navbar from '../Shared/Navbar/Navbar';
+
 
 
 const DentalServices = () => {
