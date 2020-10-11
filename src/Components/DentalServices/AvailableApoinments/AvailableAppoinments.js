@@ -1,11 +1,11 @@
 import { button, Grid } from '@material-ui/core';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './AvailableAppoinments.css'
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import { myHost, UserContext } from '../../../App';
+import { UserContext } from '../../../App';
 import { useHistory } from 'react-router-dom';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
@@ -31,9 +31,9 @@ const AvailableAppoinments = () => {
     const [open, setOpen] = React.useState(false);
     const [successAlert, setSuccessAlert] = React.useState(false);
 
-    const handleOpen = () => {
-      // user.isSignedIn 
-      user.isSignedIn? setOpen(true)
+    const handleOpen = (event) => {
+      setUser({...user,appoinmentTitle:event.title})
+      true? setOpen(true)
       : history.push('/auth')
     };
   
@@ -45,46 +45,77 @@ const AvailableAppoinments = () => {
       setOpen(false);
     };
 
+    const appoinmentsData=[
+      {
+        title:'Teeth Orthodontics',
+        time:'08:00 AM - 09:00 AM',
+        space:'10 spaces available'
+      },
+      {
+        title:'Cosmetic Dentistry',
+        time:'09:00 AM - 10:00 AM',
+        space:'10 spaces available'
+      },
+      {
+        title:'Teeth Cleaning',
+        time:'10:00 AM - 11:00 AM',
+        space:'10 spaces available'
+      },
+      {
+        title:'Teeth Orthodontics',
+        time:'04:00 PM - 05:00 PM',
+        space:'10 spaces available'
+      },
+      {
+        title:'Cosmetic Dentistry',
+        time:'05:00 AM - 06:00 PM',
+        space:'10 spaces available'
+      },
+      {
+        title:'Teeth Cleaning',
+        time:'07:00 AM - 08:00 PM',
+        space:'10 spaces available'
+      },
+      
+    ]
+    const [appoinment,setAppoinment]=useState({})
+
+    const appoinmentFormHandler=(event)=>{
+      event.preventDefault()
+      console.log("s")
+      fetch('http://localhost:3001/appoinment-booking',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(appoinment)
+      })
+      .then(res=>res.json())
+      .then(result=>{
+        console.log(result)
+        if(result){
+          successAlertHandler()
+        }
+      })
+    }
+    console.log(appoinment);
     return (
-        <div>
-            <h2 style={{color:'#5ab7d6', textAlign:"center"}}>Available Appoinments on {date}</h2>
-            <Grid className="appoinments-container" container item xs={12} spacing={6} style={{width:"90%", margin:"auto"}} >
-                <Grid className="appoinments-item" item xs={12} md={4}>
-                    <h3>Teeth orthodontics</h3>
-                    <h4>08.00 AM - 9.00 AM</h4>
-                    <p>10 spaces available</p>
-                    <button onClick={()=>handleOpen()}>Appoinment Book</button>
-                </Grid>
-                <Grid className="appoinments-item" item xs={12} md={4}>
-                    <h3>Cosmetic Dentistry</h3>
-                    <h4>10.00 AM - 11.30 AM</h4>
-                    <p>10 spaces available</p>
-                    <button onClick={()=>handleOpen()}>Appoinment Book</button>
-                </Grid>
-                <Grid className="appoinments-item" item xs={12} md={4}>
-                    <h3>Teeth Cleaning</h3>
-                    <h4>05.00 PM - 6.30 PM</h4>
-                    <p>10 spaces available</p>
-                    <button onClick={()=>handleOpen()}>Appoinment Book</button>
-                </Grid>
-                <Grid className="appoinments-item" item xs={12} md={4}>
-                    <h3>Teeth orthodontics</h3>
-                    <h4>08.00 AM - 9.00 AM</h4>
-                    <p>10 spaces available</p>
-                    <button onClick={()=>handleOpen()}>Appoinment Book</button>
-                </Grid>
-                <Grid className="appoinments-item" item xs={12} md={4}>
-                    <h3>Teeth orthodontics</h3>
-                    <h4>08.00 AM - 9.00 AM</h4>
-                    <p>10 spaces available</p>
-                    <button onClick={()=>handleOpen()}>Appoinment Book</button>
-                </Grid>
-                <Grid className="appoinments-item" item xs={12} md={4}>
-                    <h3>Teeth orthodontics</h3>
-                    <h4>08.00 AM - 9.00 AM</h4>
-                    <p>10 spaces available</p>
-                    <button onClick={()=>handleOpen()}>Appoinment Book</button>
-                </Grid>
+        <div style={{width:"90%", margin:"auto"}}>
+            <h2 style={{color:'#5ab7d6', textAlign:"center",margin:'70px'}}>Available Appoinments on {date}</h2>
+            <Grid className="appoinments-container" container item xs={12} spacing='6'  >
+               {
+                 appoinmentsData.map(data=>{
+                   return(
+                    <Grid className="appoinments-item" item md={4}>
+                      <div style={{border:'1px solid lightgray', borderRadius:'10px',boxShadow:'0px 2px 5px lightgray', padding:'30px'}}>
+                      <h3>{data.title}</h3>
+                      <h4>{data.time}</h4>
+                      <p>{data.space}</p>
+                      <button onClick={()=>handleOpen(data)}>Appoinment Book</button>
+                      </div>
+                      
+                    </Grid>
+                   )
+                 })
+               } 
             </Grid>
 
             <div>
@@ -105,18 +136,18 @@ const AvailableAppoinments = () => {
         <Fade in={open}>
           <div className={classes.paper}>
             <h2 style={{textAlign:'center', color:'#5ab7d6'}} id="transition-modal-title">Appoinment Book</h2>
-            <form action={myHost+'/appoinment-booking'} method='post' className='form-control'>
-                {/* <input type='text' name='time' placeholder='Select time'/><br/> */}
-                <select name="time" id="cars" style={{width:'393px'}}>
+            <form onSubmit={appoinmentFormHandler} className='form-control'>
+                <select onBlur={event=>setAppoinment({...appoinment,time:event.target.value})} name="time" id="cars" style={{width:'393px'}}>
                     <option value="8:00">8:00 AM</option>
                     <option value="10:00">10:00 AM</option>
                     <option value="17:00">5:00 PM</option>
                 </select><br/>
-                <input type='text' name='name' placeholder='Name'/><br/>
-                <input type='text' name='phone' placeholder='Phone Number'/><br/>
-                <input type='text' name='email' value={user.email}/><br/>
-                <input type='text' name='date' placeholder='dd/mm/year'/><br/>
-                <button onClick={successAlertHandler} type='submit' >Send</button>
+                <input onBlur={event=>setAppoinment({...appoinment,name:event.target.value})} type='text' name='name' placeholder='Name'/><br/>
+                <input onBlur={event=>setAppoinment({...appoinment,phone:event.target.value})} type='text' name='phone' placeholder='Phone Number'/><br/>
+                <input onBlur={event=>setAppoinment({...appoinment,email:user.email})} type='text' name='email' placeholder='Email address' value={user.email}/><br/>
+                <input onBlur={event=>setAppoinment({...appoinment,title:user.appoinmentTitle})} type='text' name='title' placeholder='Appoinment Title' value={user.appoinmentTitle}/><br/>
+                <input onBlur={event=>setAppoinment({...appoinment,date:event.target.value})} type='date' name='date' placeholder='dd/mm/year'/><br/>
+                <button type='submit' >Send</button>
             </form>
           </div>
         </Fade>

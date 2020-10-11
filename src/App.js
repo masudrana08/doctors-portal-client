@@ -8,7 +8,6 @@ import Home from './Components/Home/Home';
 import NotFound from './Components/NotFound/NotFound';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 
-export const myHost='http://localhost:3001'
 export const UserContext=createContext()
 function App() {
   const [user,setUser]=useState({})

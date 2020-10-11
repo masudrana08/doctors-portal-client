@@ -16,9 +16,9 @@ const DentalServices = () => {
       height:"100vh", backgroundSize:"cover",
       padding:"0 30px"
       }}>
-      <Navbar></Navbar>
+      <Navbar myColor='grey'></Navbar>
 
-      <Grid item container justifyContent='space-between' md={12}>
+      <Grid item container justifyContent='space-between' md={12} >
         <Grid item md={6} style={{padding:'10px'}}>
           <Calender></Calender>
         </Grid>

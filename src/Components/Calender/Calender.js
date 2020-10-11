@@ -1,27 +1,22 @@
-import React, { useState } from "react";
-import DateFnsUtils from '@date-io/date-fns';
-import { DatePicker,MuiPickersUtilsProvider  } from "@material-ui/pickers";
-
+import React, { Component } from 'react';
+import { useState } from 'react';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import './Calender.css'
 const Calender = () => {
-  const [date, changeDate] = useState(new Date());
-
-  // prettier-ignore
+const [date,setDate]=useState(new Date())
+const handleDate=(checkDate)=>{
+  setDate(checkDate)
+}
   return (
     <div>
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      
-
-      <DatePicker
-        autoOk
-        orientation="landscape"
-        variant="static"
-        openTo="date"
-        value={date}
-        onChange={changeDate}
-        
-      />
-      </MuiPickersUtilsProvider>
-    </div>
+        <Calendar 
+          onChange={handleDate}
+          value={date}
+          className='calender'
+          tileClassName='tile-calender'
+        />
+      </div>
   );
 };
 

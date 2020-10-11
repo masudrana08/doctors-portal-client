@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Navbar() {
+export default function Navbar({myColor}) {
   const [user,setUser]=useContext(UserContext)
 
   return (
@@ -28,9 +28,9 @@ export default function Navbar() {
             <Link className='link' to='/'><b>Home</b></Link>
             <Link className='link' to='/about'><b>About</b></Link>
             <Link className='link' to='/dental-services'><b>Dental Services</b></Link>
-            <Link className='link' to='/reviews'><b style={{color:'#ffffffb2'}}>Reviews</b></Link>
-            <Link className='link' to='/blog'><b style={{color:'#ffffffb2'}}>Blog</b></Link>
-            <Link className='link' to='/contact'><b style={{color:'#ffffffb2'}}>Contact us</b></Link>
+            <Link className='link' to='/reviews'><b style={{color:myColor || '#ffffffb2'}}>Reviews</b></Link>
+            <Link className='link' to='/blog'><b style={{color:myColor || '#ffffffb2'}}>Blog</b></Link>
+            <Link className='link' to='/contact'><b style={{color:myColor || '#ffffffb2'}}>Contact us</b></Link>
             {/* {
               user.isSignedIn ? <b>Hello, {user.name || 'user'}</b>
               : <Link  to='/auth'><button className="button">SignIn</button></Link>

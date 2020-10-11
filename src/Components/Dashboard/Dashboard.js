@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import firebase from 'firebase'
-import { myHost, UserContext } from '../../App';
+import { UserContext } from '../../App';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -44,7 +44,7 @@ const Dashboard = () => {
     useEffect(()=>{
         firebase.auth().currentUser.getIdToken(/* forceRefresh */ true)
         .then(token=>{
-            fetch(myHost+'/appoinment',{
+            fetch('http://localhost:3001/appoinment',{
                 method:'GET',
                 headers:{
                     'Content-Type':'application/json',

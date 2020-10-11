@@ -2,11 +2,7 @@
     text-align:center;
 
 }
-.appoinments-item{
-    box-shadow: 10px 10px 40px lightgrey;
-    border-radius:10px;
-    
-}
+
 .appoinments-item h3{
     color:#5ab7d6;
 }
@@ -35,4 +31,8 @@
     padding:10px 20px;
     margin-bottom:10px;
     border-radius:5px
+}
+.makeStyles-paper-2{
+    border:none;
+    outline:none;
 }

@@ -1,10 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { FormControl, FormGroup,  Input, InputLabel } from '@material-ui/core';
-import { myHost, UserContext } from '../../App';
+import { FormControl, FormGroup,  Grid,  Input, InputLabel } from '@material-ui/core';
+import { UserContext } from '../../App';
 import firebase from 'firebase'
 import { firebaseConfig } from '../../firebaseConfig';
 import { useHistory } from 'react-router-dom';
+import authBg from '../../images/auth-bg.png'
+import google from '../../images/google.png'
 firebase.initializeApp(firebaseConfig);
 
 
@@ -26,7 +28,7 @@ export default function Auth() {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider)
     .then(result=>{
-      fetch(myHost+'/userRole',{
+      fetch('http://localhost:3001/userRole',{
         method:'GET',
         headers:{
           'Content-Type':'application/json',
@@ -35,6 +37,7 @@ export default function Auth() {
       })
       .then(res=>res.json())
       .then(data=>{
+        
         setUser({...user, email:result.user.email, name:result.user.displayName, uid:result.user.uid, isSignedIn:true, role:data.role})
       })
 
@@ -49,7 +52,7 @@ export default function Auth() {
     .then(result => {
       setUser({...user, isSignedUp:true})
 
-      fetch(myHost+'/addUser',{
+      fetch('http://localhost:3001/addUser',{
         method:'POST',
         body:JSON.stringify({email:user.inputEmail,role:'user'}),
         headers:{'Content-Type':'application/json'}
@@ -62,9 +65,8 @@ export default function Auth() {
   const emailPassSigninHandler = ()=>{
     firebase.auth().signInWithEmailAndPassword(`${user.inputEmail}`, `${user.inputPassword}`)
     .then(result=>{
-      
 
-      fetch(myHost+'/userRole',{
+      fetch('http://localhost:3001/userRole',{
         method:'GET',
         headers:{
           'Content-Type':'application/json',
@@ -82,14 +84,16 @@ export default function Auth() {
     })
     .catch(error=>console.log(error))
   }
+  console.log(user)
   return (
-   <>
-     <FormGroup style={{width:"400px", margin:'auto', border:'1px solid lightgray', padding:'20px', borderRadius:'10px'}}>
+   <Grid container item xs={12}>
+     <Grid container item md={6} justify='center'>
+     <FormGroup style={{width:"350px", margin:'auto', border:'1px solid lightgray', padding:'20px', borderRadius:'10px'}}>
         {
-          user.isSignedIn ? <b style={{textAlign:'center'}}>Login</b>
+          user.isSignedUp ? <b style={{textAlign:'center'}}>Login</b>
           : <b style={{textAlign:'center'}}>Create an Account</b>
         }
-        <FormControl style={{marginBottom:"5px"}}>
+        <FormControl style={{margin:"10px 0"}}>
             <InputLabel htmlFor="my-input">Email address</InputLabel>
             <Input onBlur={(event)=>setUser({...user, inputEmail:event.target.value})} id="my-input" aria-describedby="my-helper-text" />
         </FormControl>
@@ -101,10 +105,28 @@ export default function Auth() {
           user.isSignedUp? <button onClick={emailPassSigninHandler} className='button'>Sign in</button>
           : <button onClick={emailPassSignupHandler} className='button'>Sign up</button>
         }
-        <button onClick={googleSigninHandler}>Google</button>
+        {
+          !user.isSignedUp ? 
+            <p style={{cursor:'pointer', textAlign:'center'}} onClick={()=>setUser({...user, isSignedUp:!user.isSignedUp})}>
+              Already have an account? 
+              <span style={{color:'#f15454'}}> Signin</span>
+            </p>
+          :
+            <p style={{cursor:'pointer', textAlign:'center'}} onClick={()=>setUser({...user, isSignedUp:!user.isSignedUp})}>
+              Don't have an account? 
+              <span style={{color:'#f15454'}}> Signup</span>
+            </p>
+        }
 
+        <div onClick={googleSigninHandler} style={{cursor:'pointer',display:'flex',justifyContent:'center', alignItems:'center'}}>
+          <img style={{width:'40px'}} src={google} alt=""/>
+          <p className='secondary-text' style={{marginLeft:'10px'}}>Signin with Google</p>
+          </div>
     </FormGroup>
-    <button onClick={()=>setUser({...user, isSignedUp:true})}>toggle</button>
-   </>
+    </Grid>
+    <Grid item md={6}>
+        <img style={{height:'100vh'}} src={authBg} alt=""/>
+    </Grid>
+   </Grid>
   );
 }
