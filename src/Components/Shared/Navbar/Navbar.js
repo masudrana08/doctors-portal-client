@@ -28,7 +28,7 @@ export default function Navbar({myColor}) {
             <Link className='link' to='/'><b>Home</b></Link>
             <Link className='link' to='/about'><b>About</b></Link>
             <Link className='link' to='/dental-services'><b>Dental Services</b></Link>
-            <Link className='link' to='/reviews'><b style={{color:myColor || '#ffffffb2'}}>Reviews</b></Link>
+            <Link className='link' to='/dashboard'><b style={{color:myColor || '#ffffffb2'}}>Dashboard</b></Link>
             <Link className='link' to='/blog'><b style={{color:myColor || '#ffffffb2'}}>Blog</b></Link>
             <Link className='link' to='/contact'><b style={{color:myColor || '#ffffffb2'}}>Contact us</b></Link>
             {/* {

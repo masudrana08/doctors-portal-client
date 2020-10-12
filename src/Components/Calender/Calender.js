@@ -10,8 +10,24 @@ const [user,setUser]=useContext(UserContext)
 
 const handleDate=(checkDate)=>{
   setDate(checkDate)
-  setUser({...user,calenderDate:checkDate})
+
+  
+  let mydate = new Date(checkDate).toDateString()
+
+  fetch('http://localhost:3001/appoinment-by-date',{
+    method:'GET',
+    headers:{
+      'Content-Type':'application/json',
+       mydate:mydate
+      }
+  })
+  .then(res=>res.json())
+  .then(result=>{
+    setUser({...user, appoinmentByDate:result})
+    console.log(result)
+  })
 }
+
   return (
     <div>
         <Calendar 

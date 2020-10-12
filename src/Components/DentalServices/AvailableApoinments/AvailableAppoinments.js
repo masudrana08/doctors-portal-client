@@ -82,7 +82,7 @@ const AvailableAppoinments = () => {
 
     const appoinmentFormHandler=(event)=>{
       event.preventDefault()
-      console.log("s")
+      
       fetch('http://localhost:3001/appoinment-booking',{
         method:'POST',
         headers:{'Content-Type':'application/json'},
@@ -95,7 +95,6 @@ const AvailableAppoinments = () => {
         }
       })
     }
-    console.log(user.calenderDate?.toDateString())
     return (
         <div style={{width:"90%", margin:"auto",marginBottom:'100px'}}>
             <h2 style={{color:'#5ab7d6', textAlign:"center",margin:'70px'}}>
@@ -147,7 +146,7 @@ const AvailableAppoinments = () => {
                 <input onBlur={event=>setAppoinment({...appoinment,phone:event.target.value})} type='text' name='phone' placeholder='Phone Number'/><br/>
                 <input onBlur={event=>setAppoinment({...appoinment,email:user.email})} type='text' name='email' placeholder='Email address' value={user.email}/><br/>
                 <input onBlur={event=>setAppoinment({...appoinment,title:user.appoinmentTitle})} type='text' name='title' placeholder='Appoinment Title' value={user.appoinmentTitle}/><br/>
-                <input onBlur={event=>setAppoinment({...appoinment,date:event.target.value})} type='date' name='date' placeholder='dd/mm/year'/><br/>
+                <input onBlur={event=>setAppoinment({...appoinment,date:new Date(event.target.value).toDateString()})} type='date' name='date' placeholder='dd/mm/year'/><br/>
                 <button type='submit' >Send</button>
             </form>
           </div>

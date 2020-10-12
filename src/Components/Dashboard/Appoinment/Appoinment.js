@@ -1,6 +1,8 @@
 import { Grid } from '@material-ui/core';
 import React from 'react';
+import Calender from '../../Calender/Calender';
 import LeftNavbar from '../LeftNavbar/LeftNavbar';
+import AppoinmentTable from './AppoinmentTable';
 
 const Appoinment = () => {
     return (
@@ -9,8 +11,13 @@ const Appoinment = () => {
                 <Grid item xs={2}>
                     <LeftNavbar></LeftNavbar>
                 </Grid>
-                <Grid item xs={10}>
-
+                <Grid container item xs={10}>
+                    <Grid item xs={6}>
+                        <Calender></Calender>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <AppoinmentTable></AppoinmentTable>
+                    </Grid>
                 </Grid>
             </Grid>
         </div>
