@@ -2,6 +2,7 @@ import React, { createContext, useState } from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import './App.css';
 import Auth from './Components/Auth/Auth';
+import AddDoctor from './Components/Dashboard/AddDoctor/AddDoctor';
 import Appoinment from './Components/Dashboard/Appoinment/Appoinment';
 import Dashboard from './Components/Dashboard/Dashboard';
 import Patients from './Components/Dashboard/Patients/Patients';
@@ -51,6 +52,10 @@ function App() {
 
             <Route exact path='/dashboard/appoinment'>
               <Appoinment></Appoinment>
+            </Route>
+
+            <Route exact path='/dashboard/add-doctor'>
+              <AddDoctor></AddDoctor>
             </Route>
 
             <Route exact path='/dashboard/setting'>
