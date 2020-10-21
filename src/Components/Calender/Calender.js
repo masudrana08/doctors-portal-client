@@ -14,7 +14,7 @@ const handleDate=(checkDate)=>{
   
   let mydate = new Date(checkDate).toDateString()
 
-  fetch('http://localhost:3001/appoinment-by-date',{
+  fetch('https://doctors-portal-full.herokuapp.com/appoinment-by-date',{
     method:'GET',
     headers:{
       'Content-Type':'application/json',

@@ -6,7 +6,7 @@ const AddDoctor = () => {
     const [doctorsInfo,setDoctorsInfo]=useState([])
     const [doctor,setDoctor]=useState({})
     useEffect(()=>{
-        fetch('http://localhost:3001/show-doctors')
+        fetch('https://doctors-portal-full.herokuapp.com/show-doctors')
         .then(res=>res.json())
         .then(data=>{
             console.log(data)
@@ -20,7 +20,7 @@ const AddDoctor = () => {
         formData.append('name',doctor.name)
         formData.append('email',doctor.email)
         
-        fetch('http://localhost:3001/add-doctor',{
+        fetch('https://doctors-portal-full.herokuapp.com/add-doctor',{
             method:'POST',
             body:formData
         })

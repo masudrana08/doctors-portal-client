@@ -44,7 +44,7 @@ const MainDashboard = () => {
     useEffect(()=>{
         // firebase.auth().currentUser.getIdToken(/* forceRefresh */ true)
         // .then(token=>{
-            fetch('http://localhost:3001/appoinment',{
+            fetch('https://doctors-portal-full.herokuapp.com/appoinment',{
                 method:'GET',
                 headers:{
                     'Content-Type':'application/json',

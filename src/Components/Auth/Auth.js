@@ -39,7 +39,7 @@ export default function Auth() {
     .then(result => {
       setUser({...user, isSignedUp:true})
 
-      fetch('http://localhost:3001/addUser',{
+      fetch('https://doctors-portal-full.herokuapp.com/addUser',{
         method:'POST',
         body:JSON.stringify({email:user.inputEmail,role:'user'}),
         headers:{'Content-Type':'application/json'}

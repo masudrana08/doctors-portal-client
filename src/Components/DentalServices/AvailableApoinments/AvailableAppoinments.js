@@ -83,7 +83,7 @@ const AvailableAppoinments = () => {
     const appoinmentFormHandler=(event)=>{
       event.preventDefault()
       
-      fetch('http://localhost:3001/appoinment-booking',{
+      fetch('https://doctors-portal-full.herokuapp.com/appoinment-booking',{
         method:'POST',
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify(appoinment)
