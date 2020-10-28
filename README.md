@@ -1,5 +1,6 @@
 ### Doctors Portal - Virtual Service for Patients
 ---
+**[Visit our Doctors Portal website](https://doctors-portal-client.web.app/)**
 #### Doctor's Portal Overview:
 * Get appointment 
 * add prescription
@@ -8,6 +9,7 @@
 * Search appoinment by picking a date
 * show patients details
 ..
+
 #### Usage Technology:
 * React JS
 * Node JS
@@ -23,4 +25,3 @@
 * VS Code
 * Git
 * Github
-
