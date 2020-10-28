@@ -34,33 +34,33 @@ function App() {
               <Auth></Auth>
             </Route>
 
-            <Route exact path='/dashboard'>
+            <PrivateRoute exact path='/dashboard'>
               <Dashboard></Dashboard>
-            </Route>
+            </PrivateRoute>
 
-            <Route exact path='/dashboard/dashboard'>
+            <PrivateRoute exact path='/dashboard/dashboard'>
               <Dashboard></Dashboard>
-            </Route>
+            </PrivateRoute>
 
-            <Route exact path='/dashboard/patients'>
+            <PrivateRoute exact path='/dashboard/patients'>
               <Patients></Patients>
-            </Route>
+            </PrivateRoute>
 
-            <Route exact path='/dashboard/prescription'>
+            <PrivateRoute exact path='/dashboard/prescription'>
               <Prescription></Prescription>
-            </Route>
+            </PrivateRoute>
 
-            <Route exact path='/dashboard/appoinment'>
+            <PrivateRoute exact path='/dashboard/appoinment'>
               <Appoinment></Appoinment>
-            </Route>
+            </PrivateRoute>
 
-            <Route exact path='/dashboard/add-doctor'>
+            <PrivateRoute exact path='/dashboard/add-doctor'>
               <AddDoctor></AddDoctor>
-            </Route>
+            </PrivateRoute>
 
-            <Route exact path='/dashboard/setting'>
+            <PrivateRoute exact path='/dashboard/setting'>
               <Setting></Setting>
-            </Route>
+            </PrivateRoute>
 
 
             <Route path='*'>

@@ -33,7 +33,7 @@ const AvailableAppoinments = () => {
 
     const handleOpen = (event) => {
       setUser({...user,appoinmentTitle:event.title})
-      true? setOpen(true)
+      user.isSignedIn? setOpen(true)
       : history.push('/auth')
     };
   
